@@ -6,13 +6,13 @@ from cep import Transferencia
 
 app = Flask(__name__)
 
-# Función para conectar a la base de datos MySQL
+# Función para conectar a la base de datos MySQL en Render
 def conectar_db():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="login_system"
+        host=os.environ.get('MYSQL_HOST'),
+        user=os.environ.get('MYSQL_USER'),
+        password=os.environ.get('MYSQL_PASSWORD'),
+        database=os.environ.get('MYSQL_DATABASE')
     )
 
 @app.route('/')
@@ -25,7 +25,7 @@ def validar_transferencia():
     criterio = request.form['criterio']
     emisor = request.form['emisor']
     monto = request.form['monto']
-    correo = request.form['correo']  # Esto es el nombre_usuario
+    correo = request.form['correo']
     banco = request.form['banco']
 
     # Convertir monto a float para manejar decimales
@@ -111,9 +111,6 @@ def validar_transferencia():
         # Confirmar los cambios
         conn.commit()
 
-        cursor.close()
-        conn.close()
-
         return jsonify({'mensaje': 'ACTUALIZANDO CREDITOS'}), 200
 
     except mysql.connector.Error as e:
@@ -127,5 +124,7 @@ def validar_transferencia():
             cursor.close()
             conn.close()
 
+# Configurar el puerto dinámico para Render.com
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)
