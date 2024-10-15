@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="/comprobarpago/icono.png">
+
+  <title>REGISTROSEXPRESS</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/pricing/">
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="pricing.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal">REGISTROSEXPRESS</h5>
+    <a class="btn btn-outline-primary" href="/">Home</a>
+  </div>
+
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Realizar Un Pago</h1>
+    <p class="lead">Para Realizar Un Selecciona un medio de pago</p>
+  </div>
+
+  <div class="container">
+    <div class="alert alert-danger mb-4" role="alert">
+      No USAR AFIRME PARA TRANSFERIR A ESTAS CUENTAS</br>
+      No USAR MERCADOPAGO NO GENERA CEP</br>
+      <h3>MONTO MINIMO ES DE 100 PESOS</h3></br>
+    </div>
+
+    <div class="card-deck mb-3 text-center">
+      <div class="card mb-4 box-shadow">
+        <div class="card-header">
+          <div class="col-4 mx-auto"><img src="/comprobarpago/logo.png" class="img-fluid" alt=""></div>
+        </div>
+        <div class="card-body">
+          <div class="form-group mb-3">
+            <label for="my-select">Criterio de búsqueda</label>
+            <select id="tarjeta" onchange="cambiarTarjeta()" class="form-control">
+              <option value="1">127622001381033878</option>
+              <option value="2">722969010354464015</option>
+            </select>
+          </div>
+
+          <ul class="list-unstyled mt-3 mb-4">
+            <li id="nombreTarjeta">BANCO</li>
+            <li id="nombreBanco">AZTECA</li>
+          </ul>
+
+          <button type="button" onclick="enviarBBVA()" id="botonPagoSpei"
+            class="btn btn-lg btn-block btn-danger">Pagar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" tabindex="-1" id="bbvaModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="text-dark">
+            NO USAR AFIRME PARA QUE GENERE CEP</br>
+            NO USAR MERCADOPAGO PARA QUE GENERE CEP
+          </p>
+        </div>
+        <div class="modal-body">
+          <div class="form-group mb-3">
+            <label for="my-select">Selecciona Tu Banco</label>
+            <select id="my-select" class="form-control" name="emisor">
+              <option value="40138">ABC CAPITAL</option>
+              <option value="40133">ACTINVER</option>
+              <option value="40062">AFIRME</option>
+              <option value="90661">ALTERNATIVOS</option>
+              <option value="90706">ARCUS</option>
+              <option value="90659">ASP INTEGRA OPC</option>
+              <option value="40128">AUTOFIN</option>
+              <option value="40127">AZTECA</option>
+              <option value="37166">BaBien</option>
+              <option value="40030">BAJIO</option>
+              <option value="40002">BANAMEX</option>
+              <option value="40154">BANCO COVALTO</option>
+              <option value="37006">BANCOMEXT</option>
+              <option value="40137">BANCOPPEL</option>
+              <option value="40160">BANCO S3</option>
+              <option value="40152">BANCREA</option>
+              <option value="37019">BANJERCITO</option>
+              <option value="40147">BANKAOOL</option>
+              <option value="40106">BANK OF AMERICA</option>
+              <option value="40159">BANK OF CHINA</option>
+              <option value="37009">BANOBRAS</option>
+              <option value="40072">BANORTE</option>
+              <option value="40058">BANREGIO</option>
+              <option value="40060">BANSI</option>
+              <option value="2001">BANXICO</option>
+              <option value="40129">BARCLAYS</option>
+              <option value="40145">BBASE</option>
+              <option value="40012">BBVA MEXICO</option>
+              <option value="40112">BMONEX</option>
+              <option value="90677">CAJA POP MEXICA</option>
+              <option value="90683">CAJA TELEFONIST</option>
+              <option value="90630">CB INTERCAM</option>
+              <option value="40143">CIBANCO</option>
+              <option value="90631">CI BOLSA</option>
+              <option value="90901">CLS</option>
+              <option value="90903">CoDi Valida</option>
+              <option value="40130">COMPARTAMOS</option>
+              <option value="40140">CONSUBANCO</option>
+              <option value="90652">CREDICAPITAL</option>
+              <option value="90688">CREDICLUB</option>
+              <option value="90680">CRISTOBAL COLON</option>
+              <option value="40151">DONDE</option>
+              <option value="90616">FINAMEX</option>
+              <option value="90634">FINCOMUN</option>
+              <option value="90689">FOMPED</option>
+              <option value="90685">FONDO (FIRA)</option>
+              <option value="90601">GBM</option>
+              <option value="37168">HIPOTECARIA FED</option>
+              <option value="40021">HSBC</option>
+              <option value="40155">ICBC</option>
+              <option value="40036">INBURSA</option>
+              <option value="90902">INDEVAL</option>
+              <option value="40150">INMOBILIARIO</option>
+              <option value="40136">INTERCAM BANCO</option>
+              <option value="90686">INVERCAP</option>
+              <option value="40059">INVEX</option>
+              <option value="40110">JP MORGAN</option>
+              <option value="90653">KUSPIT</option>
+              <option value="90670">LIBERTAD</option>
+              <option value="90602">MASARI</option>
+              <option value="90722">MERCADO PAGO</option>
+              <option value="40042">MIFEL</option>
+              <option value="40158">MIZUHO BANK</option>
+              <option value="90600">MONEXCB</option>
+              <option value="40108">MUFG</option>
+              <option value="40132">MULTIVA BANCO</option>
+              <option value="90613">MULTIVA CBOLSA</option>
+              <option value="37135">NAFIN</option>
+              <option value="90638">NU MEXICO</option>
+              <option value="90710">NVIO</option>
+              <option value="90684">OPM</option>
+              <option value="40148">PAGATODO</option>
+              <option value="90620">PROFUTURO</option>
+              <option value="40156">SABADELL</option>
+              <option value="40014">SANTANDER</option>
+              <option value="40044">SCOTIABANK</option>
+              <option value="40157">SHINHAN</option>
+              <option value="90646">STP</option>
+              <option value="90648">TACTIV CB</option>
+              <option value="90703">TESORED</option>
+              <option value="90656">UNAGRA</option>
+              <option value="90617">VALMEX</option>
+              <option value="90605">VALUE</option>
+              <option value="90608">VECTOR</option>
+              <option value="40113">VE POR MAS</option>
+              <option value="40141">VOLKSWAGEN</option>
+              <!-- Otras opciones -->
+            </select>
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="nombreReferencia">Clave De Rastreo</span>
+            </div>
+            <input class="form-control" type="text" name="criterio" placeholder="Ingresa La Clave De Rastreo">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="correo">Tu Correo</span>
+            </div>
+            <input class="form-control" type="text" name="usuario" placeholder="USUARIO">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Monto</span>
+            </div>
+            <input class="form-control" type="text" name="monto" placeholder="">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="cerrarModal()">Cancelar</button>
+          <button type="button" class="btn btn-primary" onclick="reportarPago('1')">Comprobar Pago</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery y Bootstrap JS correctamente enlazados -->
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- JavaScript personalizado -->
+  <script>
+    function cambiarTarjeta() {
+      if ($('#tarjeta').val() == '1') {
+        $('#nombreTarjeta').html('BANCO</br>4130980402935421');
+        $('#nombreBanco').html('AZTECA');
+      } else if ($('#tarjeta').val() == '2') {
+        $('#nombreTarjeta').html('BANCO</br>062180008425137159');
+        $('#nombreBanco').html('MERCADO PAGO');
+      }
+    }
+
+    function enviarBBVA() {
+      $('#bbvaModal').modal('show'); // Mostrar el modal
+    }
+
+    function cerrarModal() {
+      $('#bbvaModal').modal('hide'); // Cerrar el modal
+    }
+
+    function reportarPago(banco) {
+      let tarjeta = $('#tarjeta').val();
+      let criterio = $('[name="criterio"]').val();
+      let emisor = $('[name="emisor"]').val();
+      let monto = $('[name="monto"]').val();
+      let correo = $('[name="correo"]').val();
+
+      Swal.fire({
+        title: 'Comprobando Pago',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        background: '#19191a',
+        showConfirmButton: false
+      });
+      Swal.showLoading();
+
+      $.post('/comprobarpago/index.php', {
+        tarjeta,
+        criterio,
+        emisor,
+        monto,
+        correo,
+        banco
+      }, function (resp) {
+        Swal.fire({
+          title: '<strong>Información</strong>',
+          icon: 'info',
+          html: resp,
+          showCloseButton: true,
+          confirmButtonText: '<i class="fa fa-thumbs-up"></i> ¡Genial!'
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>
