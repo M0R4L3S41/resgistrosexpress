@@ -28,6 +28,8 @@ def validar_transferencia():
     correo = request.form['correo']
     banco = request.form['banco']
 
+    print(f"Receptores permitidos: {clabe.BANKS.values()}")
+    print(f"Receptor proporcionado: {receptort}")
     # Convertir monto a float para manejar decimales
     try:
         monto_float = float(monto)
