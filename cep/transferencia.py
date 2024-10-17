@@ -100,6 +100,9 @@ class Transferencia:
         cuenta: str,
         monto: float,
     ) -> Optional[Client]:
+        print(f"Emisor recibido: {emisor}")
+        print(f"Bancos válidos: {clabe.BANKS.values()}")
+        assert emisor in clabe.BANKS.values()
         assert emisor in clabe.BANKS.values()
         assert receptor in clabe.BANKS.values()
         client = Client()  # Use new client to ensure thread-safeness
