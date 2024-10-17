@@ -6,7 +6,7 @@ from cep import Transferencia
 
 app = Flask(__name__)
 
-# Función para conectar a la base de datos MySQL en Render
+# Función para conectar a la base de datos MySQL
 def conectar_db():
     return mysql.connector.connect(
         host=os.environ.get('MYSQL_HOST'),
@@ -25,11 +25,9 @@ def validar_transferencia():
     criterio = request.form['criterio']
     emisor = request.form['emisor']
     monto = request.form['monto']
-    correo = request.form['correo']
+    correo = request.form['correo']  # Esto es el nombre_usuario
     banco = request.form['banco']
 
-    print(f"Receptores permitidos: {clabe.BANKS.values()}")
-    print(f"Receptor proporcionado: {receptort}")
     # Convertir monto a float para manejar decimales
     try:
         monto_float = float(monto)
@@ -41,6 +39,7 @@ def validar_transferencia():
         return jsonify({'mensaje': 'NO SE PUEDE PROCESAR SU PAGO, RECUERDE QUE EL VALOR DEBE SER MAYOR O IGUAL A 100', 'estado': 'error'}), 400
 
     # Determinar el valor de la tarjeta y receptor
+# Determinar el valor de la tarjeta y receptor
     if tarjeta == '2':
         tarjeta = '722969010354464015'
         receptort = '90722'
@@ -49,7 +48,6 @@ def validar_transferencia():
         receptort = '40127'
     else:
         return jsonify({'error': 'Tarjeta no válida'}), 400
-    
     fecha_actual = date.today()
     anio = fecha_actual.year
     mes = fecha_actual.month
@@ -113,6 +111,9 @@ def validar_transferencia():
         # Confirmar los cambios
         conn.commit()
 
+        cursor.close()
+        conn.close()
+
         return jsonify({'mensaje': 'ACTUALIZANDO CREDITOS'}), 200
 
     except mysql.connector.Error as e:
@@ -126,7 +127,5 @@ def validar_transferencia():
             cursor.close()
             conn.close()
 
-# Configurar el puerto dinámico para Render.com
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(debug=True, host='0.0.0.0', port=port)
+    app.run(debug=True)
